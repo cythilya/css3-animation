@@ -16,7 +16,7 @@
 
 並做了一個非常簡單樸素的練習。  
 
-![CSS3 Animation](https://goo.gl/S1kVef)  
+![CSS3 Animation](demo/css3-animation-1.gif)  
 
 是不是單純的可愛呢 XD
 
@@ -24,21 +24,21 @@
 
 第一個範例是[Old School Clock with CSS3 and jQuery](https://css-tricks.com/css3-clock)，文章內會一步一步帶著大家完成。雖然範例中沒有用到`@keyframes`，但如果你跟我一樣習慣用javascript操作物件，這是一個讓人卸下緊張害怕的心防的好練習題噢(其實也沒那麼神祕嘛！)，之後要改寫成純粹的CSS3 Animation也沒問題。  
 
-![CSS3 Animation - Old School Clock with CSS3 and jQuer](https://goo.gl/c1AnKY)
+![CSS3 Animation - Old School Clock with CSS3 and jQuer](demo/css3-animation-2.gif)
 
 再來，就是來做比較複雜的練習，把在Tutorial學到的都應用上去 - [Solar System animation - Pure CSS](http://codepen.io/kowlor/pen/ZYYQoy)。
 
-![CSS3 Animation - Solar System animation - Pure CSS](https://goo.gl/m9E0CR)
+![CSS3 Animation - Solar System animation - Pure CSS](demo/css3-animation-3.gif)
 
 再來個有時序概念的練習...[CSS3 Graph Animation](http://www.alessioatzeni.com/blog/css3-graph-animation)
 
-![CSS3 Graph Animation](https://goo.gl/2rU3Wm)
+![CSS3 Graph Animation](demo/css3-animation-4.gif)
 
 順便推薦兩個我滿喜歡的範例...[A love for Cats](http://codepen.io/charisseysabel/pen/adXGMe)和[Animated CSS3 Heart](http://codepen.io/N_R_Web_Designer/pen/zxwVKX)。如果有時間的話多練習這兩個也不錯。
 
-![CSS3 Animation - A love for Cats](https://goo.gl/aZIj43)  
+![CSS3 Animation - A love for Cats](demo/css3-animation-6.gif)  
 
-![Animated CSS3 Heart](https://goo.gl/SdQbap)  
+![Animated CSS3 Heart](demo/css3-animation-5.gif)  
 
 做完以上範例就提槍上戰場啦。
 
