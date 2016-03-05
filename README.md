@@ -40,7 +40,7 @@
 
 ![Animated CSS3 Heart](https://goo.gl/SdQbap)  
 
-以上練習都會放在我的[github](https://github.com/cythilya/css3-animation)上。做完以上範例就提槍上戰場啦。
+做完以上範例就提槍上戰場啦。
 
 ---
 ##References
