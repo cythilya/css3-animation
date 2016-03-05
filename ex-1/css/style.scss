@@ -1,0 +1,30 @@
+.clock{
+	background: url(../images/clockface.jpg);
+	width: 600px;
+	height: 600px;
+	margin: 20px auto 0 auto;
+	position: relative;
+}
+
+.sec, .min, .hour{
+	width: 30px;
+	height: 600px;
+	position: absolute;
+	left: 285px;
+	top: 0;
+}
+
+.sec {
+	background: url(../images/sechand.png);
+	z-index: 1;
+}
+
+.min{
+	background: url(../images/minhand.png);
+	z-index: 2;
+}
+
+.hour{
+	background: url(../images/hourhand.png);
+	z-index: 3;
+}

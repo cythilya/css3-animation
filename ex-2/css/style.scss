@@ -1,0 +1,259 @@
+$year-in-second: 30; /* 1 earth year = 30 sec */
+
+/* 設定星球與軌道大小 */
+$sun: 40px;
+$mercury-orb : 70px;
+$mercury-pl: 4px;
+$venus-orb : 100px;
+$venus-pl: 8px;
+$earth-orb : 145px;
+$earth-pl: 6px;
+$mars-orb : 190px;
+$mars-pl: 6px;
+$jupiter-orb : 340px;
+$jupiter-pl: 18px;
+$saturn-orb : 440px;
+$saturn-pl: 12px;
+$uranus-orb : 520px;
+$uranus-pl: 10px;
+$neptune-orb : 630px;
+$neptune-pl: 10px;
+$pluto-orb : 780px;
+$pluto-pl: 3px;
+$asteroids-belt-orb : 300px;
+$asteroids-belt-pl: 210px;
+
+/* 設定animation duration */
+/* 例如：水星繞太陽一周需要 87.5 天，則是地球的 87.5 / 365.2563 ~ 0.2396 倍
+	 在動畫中需要 0.2396 * 30 = 7.19秒 完成環繞太陽一周 */
+@function revolution($pl-year-in-days){
+	@return ($pl-year-in-days / 365.2563) * $year-in-second + s;
+}
+
+/* 產生隨機數字 1 ~ 9 */
+@function alphaRandom(){
+	@return random(1000) * 0.001;
+}
+
+/* 隨機產生星星 */
+@function stars($s, $max-area, $min-area: 0, $star-size: 0){
+  $stars: #{$min-area + random($max-area)}px #{$min-area + random($max-area)}px 0 #{$star-size}px rgba(255,255,255, alphaRandom()); 
+  @for $i from 1 to $s{
+    $stars: '#{$stars} , #{$min-area + random($max-area)}px #{$min-area + random($max-area)}px 0 #{$star-size}px rgba(255,255,255, #{alphaRandom()})'
+  }
+  @return unquote($stars); /* removes quotes from a string */
+}
+
+/* 設定星球大小 */
+@mixin planetSize($diameter: 0px){
+	width: $diameter;
+	height: $diameter;
+}
+
+/* 調整位置 */
+@mixin positionCorrect($diameter: 0px){
+	margin-top: -$diameter/2;
+	margin-left: -$diameter/2;
+}
+
+/* 背景設定 */
+html, body{
+  height:100%;
+  width:100%;
+}
+
+/* 背景設定 */
+body{
+  background: radial-gradient(ellipse at bottom, #1C2837 0%, #050608 100%);
+}
+
+.solar-system{
+	position: relative;
+  height:100%;
+  /* 隨機產生背景星星 */
+  &:after{
+  	@include planetSize(2px);
+  	background: #fff;
+  	box-shadow: stars(500, 1800);
+  	content: "";
+  	position: absolute;
+  }
+	.planet{
+		border-radius: 1000px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		/* 先預設每個星球都在中央，在依照實際狀況微調，(不依照parent大小)誤差會比較小 */
+    &:not(.sun){
+      border: 1px solid rgba(102, 166, 229, 0.12); /* 設定軌道顏色 */
+      &:before{
+        border-radius: 100px;
+        content: ""; /* 星球預設大小 */
+        position: absolute;
+        left: 50%; /* 星球預設位置 */
+      }
+    }
+    &:not(.asteroids-belt){
+      &:before{
+        box-shadow: inset 0 6px 0 -2px rgba(0, 0, 0, 0.25); /* 星球上方的陰影 */
+      }    	
+    }
+	}
+}
+
+.sun{
+	@include planetSize($sun);
+	@include positionCorrect($sun);	
+	background: radial-gradient(ellipse at center, #ffd000 1%,#f9b700 39%,#f9b700 39%,#e06317 100%);
+	box-shadow: 0 0 10px 2px rgba(255, 107, 0, 0.4), 0 0 22px 11px rgba(255, 203, 0, 0.13);
+}
+
+.mercury{
+	@include planetSize($mercury-orb);
+	@include positionCorrect($mercury-orb);	
+	animation: orb revolution(87.5) linear infinite;
+	/* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
+	&:before{
+		@include planetSize($mercury-pl);
+		@include positionCorrect($mercury-pl);		
+		background: #9f5e26;
+	}
+}
+
+.venus{
+	@include planetSize($venus-orb);
+	@include positionCorrect($venus-orb);	
+	animation: orb revolution(224.7) linear infinite;
+	&:before{
+		@include planetSize($venus-pl);
+		@include positionCorrect($venus-pl);		
+		background: #beb768;
+	}
+}
+
+.earth{
+	@include planetSize($earth-orb);
+	@include positionCorrect($earth-orb);
+	animation: orb revolution(365.2563) linear infinite;
+	&:before{
+		@include planetSize($earth-pl);
+		@include positionCorrect($earth-pl);		
+		background:#11abe9;
+	}
+	/* 月球 */
+	&:after{
+		@include planetSize(18px);
+		@include positionCorrect(18px);		
+		box-shadow: 0 -10px 0 -8px grey;
+		content: "";
+		position: absolute;
+		left: 50%;
+    top: 0px;
+		animation: orb revolution(27.3216) linear infinite;
+	}
+}
+
+.mars{
+	@include planetSize($mars-orb);
+	@include positionCorrect($mars-orb);
+	animation: orb revolution(687) linear infinite;
+	&:before{
+		background:#cf3921;
+		@include planetSize($mars-pl);
+		@include positionCorrect($mars-pl);
+	}
+}
+
+.jupiter{
+	@include planetSize($jupiter-orb);
+	@include positionCorrect($jupiter-orb);
+	animation: orb revolution(4334) linear infinite;
+	&:before{
+		background:#c76e2a;
+		@include planetSize($jupiter-pl);
+		@include positionCorrect($jupiter-pl);
+	}	
+}
+
+.saturn{
+	@include planetSize($saturn-orb);
+	@include positionCorrect($saturn-orb);
+	animation: orb revolution(10747) linear infinite;
+	&:before{
+		@include planetSize($saturn-pl);
+		@include positionCorrect($saturn-pl);
+		background:#e7c194;
+	}
+	&:after{ /* 土星環 */
+		animation: orb revolution(10747) linear infinite;
+		animation-direction: reverse;
+		box-shadow: 0 1px 0 1px #987641, 3px 1px 0 #987641, -3px 1px 0 #987641;
+		border-radius: 50%;
+		content: "";
+		width: 4.676%;
+		height: 2.34%;
+		margin-top: -1.2%;
+		margin-left: -2.3%;
+		position: absolute;
+		left: 50%;
+		top: 0;
+		/*transform: rotateZ(-60deg);
+		transform-origin: 52% 60%;*/
+	}
+}
+
+.uranus{
+	@include planetSize($uranus-orb);
+	@include positionCorrect($uranus-orb);
+	animation: orb revolution(30589) linear infinite;
+	&:before{
+		@include planetSize($uranus-pl);
+		@include positionCorrect($uranus-pl);
+		background:#b5e3e3;
+	}	
+}
+
+.neptune{
+	@include planetSize($neptune-orb);
+	@include positionCorrect($neptune-orb);
+	animation: orb revolution(59802) linear infinite;
+	&:before{
+		@include planetSize($neptune-pl);
+		@include positionCorrect($neptune-pl);
+		background:#175e9e;
+	}	
+}
+
+.pluto{
+	@include planetSize($pluto-orb);
+	@include positionCorrect($pluto-orb);
+	animation: orb revolution(90580) linear infinite;
+	&:before{
+		@include planetSize($pluto-pl);
+		@include positionCorrect($pluto-pl);
+		background:#fff;
+	}	
+}
+
+/* 小行星帶 */
+.asteroids-belt{
+	@include planetSize($asteroids-belt-orb);
+	@include positionCorrect($asteroids-belt-orb);
+	animation: orb revolution(2191) linear infinite;
+	opacity: 0.7;
+	&:before{
+		@include planetSize($asteroids-belt-pl);
+		@include positionCorrect($asteroids-belt-pl);
+		top: 50%;
+		box-shadow: stars(390, 290, -290/2, -104);
+	}	
+}
+
+@keyframes orb{
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(-360deg);
+	}
+}
