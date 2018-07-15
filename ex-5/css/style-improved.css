@@ -1,0 +1,44 @@
+.layout {
+  width: 900px;
+  height: 400px;
+}
+
+.app-menu {
+  width: 300px;
+  height: 500px;
+  float: left;
+  color: #fff;
+  background: #000;
+}
+
+.app-menu-open {
+  display: none;
+}
+
+.content {
+  position: relative;
+  padding: 30px;
+  width: 500px;
+  float: left;
+}
+
+.toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.6;
+}

@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>$title</title>
+<link rel="stylesheet" href="css/reset-font-min.css">
+<link rel="stylesheet" href="css/clearfix.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="layout">
+  <div class="app-menu"></div>
+  <div class="content">
+    <a class="toggle" href="#">&#8801;</a>
+    <h1>Hello World!</h1>
+    <p>
+      A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was.
+    </p>
+  </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+setInterval(function() {
+  $('.app-menu').toggleClass('app-menu-open');
+}, 1000);
+
+// $('.toggle').click(() => {
+//   $('.app-menu').toggleClass('app-menu-open');
+// });
+
+</script>
+</body>
+</html>
